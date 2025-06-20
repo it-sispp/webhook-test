@@ -1,0 +1,21 @@
+.title {
+    color: red;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.text {
+    color: blue;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
