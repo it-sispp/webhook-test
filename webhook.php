@@ -46,20 +46,22 @@ if ($data['ref'] === 'refs/heads/main') {
     writeLog("Push to main branch detected");
     
     // Переходим в директорию репозитория
-    $repoPath = __DIR__;
+    $repoPath = '/var/www/sispp/data/www/git-test.sinmo.ru/';
     chdir($repoPath);
     
     // Выполняем git pull
     $output = [];
     $returnVar = 0;
     
-    // Обновляем репозиторий
     exec('git pull origin main 2>&1', $output, $returnVar);
     
     $gitOutput = implode("\n", $output);
     writeLog("Git pull output: " . $gitOutput);
     
     if ($returnVar === 0) {
+        exec('cp index.html /var/www/sispp/data/www/git-test.sinmo.ru/frontend/web/', $copyOutput);
+        exec('cp style.css /var/www/sispp/data/www/git-test.sinmo.ru/frontend/web/', $copyOutput2);
+
         writeLog("Repository updated successfully");
         echo "Repository updated successfully";
     } else {
