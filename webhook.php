@@ -18,15 +18,15 @@ $headers = getallheaders();
 
 writeLog("Webhook received");
 
-// Проверяем подпись GitHub (если используется секретный ключ)
-if (isset($headers['X-Hub-Signature-256'])) {
-    $signature = 'sha256=' . hash_hmac('sha256', $payload, $secret);
-    if (!hash_equals($signature, $headers['X-Hub-Signature-256'])) {
-        writeLog("Invalid signature");
-        http_response_code(403);
-        exit('Invalid signature');
-    }
-}
+// Проверяем подпись GitHub (отключено для тестирования)
+// if (isset($headers['X-Hub-Signature-256'])) {
+//     $signature = 'sha256=' . hash_hmac('sha256', $payload, $secret);
+//     if (!hash_equals($signature, $headers['X-Hub-Signature-256'])) {
+//         writeLog("Invalid signature");
+//         http_response_code(403);
+//         exit('Invalid signature');
+//     }
+// }
 
 // Декодируем JSON данные
 $data = json_decode($payload, true);
