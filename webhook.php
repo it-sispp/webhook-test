@@ -14,7 +14,17 @@ function writeLog($message) {
 
 // Получаем данные запроса
 $payload = file_get_contents('php://input');
-$headers = getallheaders();
+$headers = [];
+if (function_exists('getallheaders')) {
+    $headers = getallheaders();
+} else {
+    // Альтернативный способ получения заголовков
+    foreach ($_SERVER as $key => $value) {
+        if (strpos($key, 'HTTP_') === 0) {
+            $headers[str_replace('_', '-', substr($key, 5))] = $value;
+        }
+    }
+}
 
 writeLog("Webhook received");
 
