@@ -45,7 +45,7 @@ $data = json_decode($payload, true);
 if ($data['ref'] === 'refs/heads/main') {
     writeLog("Push to main branch detected");
     
-    // Переходим в директорию репозитория
+    // Переходим в директорию репозитория (.git находится здесь)
     $repoPath = '/var/www/sispp/data/www/git-test.sinmo.ru/';
     chdir($repoPath);
     
@@ -59,10 +59,10 @@ if ($data['ref'] === 'refs/heads/main') {
     writeLog("Git pull output: " . $gitOutput);
     
     if ($returnVar === 0) {
+        // Копируем обновленные файлы в frontend/web
         exec('cp index.html /var/www/sispp/data/www/git-test.sinmo.ru/frontend/web/', $copyOutput);
         exec('cp style.css /var/www/sispp/data/www/git-test.sinmo.ru/frontend/web/', $copyOutput2);
-
-        writeLog("Repository updated successfully");
+        writeLog("Repository updated and files copied to frontend/web");
         echo "Repository updated successfully";
     } else {
         writeLog("Git pull failed: " . $gitOutput);
