@@ -1,6 +1,8 @@
 <?php
-// GitHub Webhook Handler
-// Секретный ключ для проверки подлинности (установите свой)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $secret = 'your_secret_key_here';
 
 // Логирование для отладки
